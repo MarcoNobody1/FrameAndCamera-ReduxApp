@@ -1,11 +1,16 @@
 import React from 'react';
 import { Counter } from './features/counter/Counter';
 import './App.css';
+import { MenuAppBar } from './components/MenuAppBar';
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <p>Hola buenas:</p>
+        <MenuAppBar/>
+
         <Counter />
         <p>
           Edit <code>src/App.js</code> and save to reload.
