@@ -23,7 +23,7 @@ export const favoriteSlice = createSlice({
     },
     searchFavs: (state,action) =>{
       state.favorites = state.favorites.filter((item) => {
-        return item.altDesc.toLowerCase().trim().replace(/\s+/g, '').includes(action.payload)
+        return item.altDesc.toLowerCase().trim().replace(/\s+/g, '').includes(action.payload.toLowerCase().trim().replace(/\s+/g, ''))
       })
     },
     resetFavorites: (state) => {

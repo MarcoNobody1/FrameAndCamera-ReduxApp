@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchPhotos } from "../features/search/searchThunks";
 import { clearPhotos } from "../features/search/searchSlice";
 import { useLocation } from "react-router-dom";
@@ -23,6 +23,8 @@ export const SearchBar = () => {
       dispatch(searchFavs(searchText));
     } else {
       dispatch(resetFavorites());
+      dispatch(searchFavs(searchText)
+      );
     }
     setPrevSearchText(searchText);
   }, [searchText]);
