@@ -5,11 +5,10 @@ import { saveAs } from "file-saver";
 import Swal from 'sweetalert2';
 import gif from "../../assets/download-ok.gif";
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
+import ModalEditDesc from '../../components/ModalEditDesc';
 
 
 export const Favorites = () => {
-
-    
 
     const favorites = useSelector(favoritePhotos)
     const dispatch = useDispatch();
@@ -98,9 +97,7 @@ export const Favorites = () => {
                 <Button size="small" onClick={handleDownload}>
                   DOWNLOAD
                 </Button>
-                <Button size="small">
-                  EDIT
-                </Button>
+                <ModalEditDesc/>
               </CardActions>
             </Card>
           );

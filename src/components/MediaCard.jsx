@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 import gif from "../assets/download-ok.gif";
 import { CircularProgress } from "@mui/material";
 import { addFavorite } from "../features/favorite/favoriteSlice";
+import ModalEditDesc from "./ModalEditDesc";
 
 export const MediaCard = () => {
   const [currentStatus, setCurrentStatus] = useState("");
@@ -83,6 +84,7 @@ export const MediaCard = () => {
           };
 
           return (
+            <>
             <Card
               key={infoPhoto.id}
               sx={{
@@ -123,6 +125,7 @@ export const MediaCard = () => {
                 </Button>
               </CardActions>
             </Card>
+            </>
           );
         })
       ) : currentStatus === "rejected" ? (
