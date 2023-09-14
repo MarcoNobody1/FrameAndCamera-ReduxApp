@@ -16,7 +16,9 @@ export const favoriteSlice = createSlice({
     },
     removeFavorite: (state, action) => {
       state.favorites = state.favorites.filter((photo) => photo.id !== action.payload.id);
-      localStorage.setItem(`favsLocal`, JSON.stringify(state.favorites));
+      const localphotos = JSON.parse(localStorage.getItem(`favsLocal`));
+      const filtered = localphotos.filter((photo) => photo.id !== action.payload.id);
+      localStorage.setItem(`favsLocal`, JSON.stringify(filtered));
     },
     addFromLocal: (state, action) => {
       state.favorites = action.payload;
