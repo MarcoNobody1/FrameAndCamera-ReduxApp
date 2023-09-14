@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useDispatch, useSelector } from "react-redux";
-import { info, removeCard, statusinfo } from "../features/search/searchSlice";
+import { info, removeCard, statusinfo, searchedPhotos } from "../features/search/searchSlice";
 import { useEffect, useState } from "react";
 import { saveAs } from "file-saver";
 import Swal from "sweetalert2";
@@ -18,7 +18,9 @@ export const MediaCard = () => {
   const [currentStatus, setCurrentStatus] = useState("");
   const infoPhotos = useSelector(info);
   const statusInfo = useSelector(statusinfo);
+  const searchedPhotosInfo = useSelector(searchedPhotos);
   const dispatch = useDispatch();
+  const [currenPhotos, setCurrentPhotos] = useState([]);
 
   useEffect(() => {
     if (statusInfo === "rejected") {
@@ -27,8 +29,9 @@ export const MediaCard = () => {
       setCurrentStatus(statusInfo);
     } else if (statusInfo === "fulfilled") {
       setCurrentStatus(statusInfo);
+      setCurrentPhotos(searchedPhotosInfo.length !== 0 ? searchedPhotosInfo : infoPhotos);
     }
-  }, [statusInfo]);
+  }, [statusInfo, infoPhotos, searchedPhotosInfo]);
 
   const onAddFavoriteHandler = (infoPhoto) => {
     dispatch(removeCard(infoPhoto));
@@ -39,7 +42,7 @@ export const MediaCard = () => {
   return (
     <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
       {currentStatus === "fulfilled" ? (
-        infoPhotos.map((infoPhoto) => {
+        currenPhotos.map((infoPhoto) => {
           const handleDownload = () => {
             
             const url = `${infoPhoto.url}`;
@@ -103,9 +106,9 @@ export const MediaCard = () => {
                   component="i"
                   color="text.secondary"
                 >
-                  {infoPhoto.city === null
+                  {infoPhoto.city === null || infoPhoto.city === ''
                     ? "Photo taken in an unknown place..."
-                    : `Photo taken in ${infoPhoto.city}, ${infoPhoto.country}`}
+                    : `Photo taken ${infoPhoto.append} ${infoPhoto.city}, ${infoPhoto.country}`}
                 </Typography>
                 <Typography variant="body1">
                   {infoPhoto && infoPhoto.altDesc.charAt(0).toUpperCase() +
