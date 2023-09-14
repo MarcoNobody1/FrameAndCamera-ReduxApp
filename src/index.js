@@ -5,7 +5,7 @@ import { store } from "./app/store";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 
-import { Router } from "./Router";
+import { Routing } from "./Routing";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -14,7 +14,7 @@ root.render(
   //<React.StrictMode>
   <Provider store={store}>
     <BrowserRouter>
-      <Router />
+      <Routing />
     </BrowserRouter>
   </Provider>
   //</React.StrictMode>
