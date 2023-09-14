@@ -60,9 +60,6 @@ export function HomeAppBar() {
                 <SearchBar />
               </Box>
               <Box sx={{ flexGrow: 1, textAlign: "center" }}>
-                <Button variant="outlined">Search</Button>
-              </Box>
-              <Box sx={{ flexGrow: 1, textAlign: "center" }}>
                 <Link to={"../favs"}>
                   <Button variant="outlined">Favorites</Button>
                 </Link>
