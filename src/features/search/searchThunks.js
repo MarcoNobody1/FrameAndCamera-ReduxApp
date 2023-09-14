@@ -6,7 +6,7 @@ const clientId = "client_id=cpDUshpWYRdkrCVucZevE9z5iRVI_Bq01VV8Z7HRDlE";
 const clientId2 = "client_id=y7WCJuIpaCe_Ajeix9l-J0g9aTj1Lha5YuEJWbp3Ldo";
 
 export const getPhotos = createAsyncThunk("search/getPhotos", async () => {
-  const request = await fetch(`${baseUrl}${random}&${clientId}`);
+  const request = await fetch(`${baseUrl}${random}&${clientId2}`);
   const rawphotos = await request.json();
 
   return rawphotos.map((rawphoto) => {

@@ -9,6 +9,8 @@ import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@
 
 export const Favorites = () => {
 
+    
+
     const favorites = useSelector(favoritePhotos)
     const dispatch = useDispatch();
 
