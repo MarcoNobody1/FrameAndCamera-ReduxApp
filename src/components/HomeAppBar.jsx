@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,15 +15,25 @@ import {
   Select,
 } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getPhotos } from "../features/search/searchThunks";
+import { favoritePhotos, orderFavorites } from "../features/favorite/favoriteSlice";
 
 export function HomeAppBar() {
   const location = useLocation();
   const dispatch = useDispatch();
+  const [orderBy, setOrderBy] = useState("");
+  const favorites = useSelector(favoritePhotos);
 
+  //Hace un dispatch de fotos random cuando haces click en el botón.
   const handleRandomCall = () =>{
     dispatch(getPhotos())
+  }
+  
+  const handleSelect = (event) => {
+    const value = event.target.value;
+    setOrderBy(value);
+    dispatch(orderFavorites(value))
   }
 
   return (
@@ -124,10 +134,12 @@ export function HomeAppBar() {
                     Order by...
                   </InputLabel>
                   <Select
+                    onChange={handleSelect}
                     sx={{ background: "#F297BF", color: "white", p: "0" }}
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     label="Order by..."
+                    value={orderBy}
                   >
                     <MenuItem
                       sx={{ color: "white", background: "#F297BF" }}
@@ -146,6 +158,12 @@ export function HomeAppBar() {
                       value={"likes"}
                     >
                       likes
+                    </MenuItem>
+                    <MenuItem
+                      sx={{ color: "white", background: "#F297BF" }}
+                      value={"date"}
+                    >
+                      date
                     </MenuItem>
                   </Select>
                 </FormControl>

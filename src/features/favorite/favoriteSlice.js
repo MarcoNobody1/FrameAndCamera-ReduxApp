@@ -28,9 +28,27 @@ export const favoriteSlice = createSlice({
     },
     resetFavorites: (state) => {
       state.favorites = JSON.parse(localStorage.getItem('favsLocal')) || [];
+    },
+    orderFavorites: (state, action) => {
+      switch (action.payload) {
+        case "width":
+          state.favorites.sort((a,b) => a.width - b.width);
+          break;
+        case "height":
+          state.favorites.sort((a,b) => a.height - b.height);
+          break;
+        case "likes":
+          state.favorites.sort((a,b) => a.likes - b.likes);
+          break;
+        case "date":
+          state.favorites.sort((a,b) => new Date(a.date) - new Date(b.date));
+          break;
+        default:
+          break;
+      }
     }
   },
 });
 
-export const { addFavorite, removeFavorite, addFromLocal, searchFavs, resetFavorites } = favoriteSlice.actions;
+export const { addFavorite, removeFavorite, addFromLocal, searchFavs, resetFavorites, orderFavorites } = favoriteSlice.actions;
 export const favoritePhotos = (state) => state.favorite.favorites;
