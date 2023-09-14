@@ -19,7 +19,7 @@ export const Favorites = () => {
     }
 
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
         {favorites.map((favorite) => {
           const handleDownload = () => {
             const url = `${favorite.url}`;
@@ -97,6 +97,9 @@ export const Favorites = () => {
                 <Button onClick={() => onRemoveFavoriteHandler(favorite)} size="small">REMOVE FROM LIKES</Button>
                 <Button size="small" onClick={handleDownload}>
                   DOWNLOAD
+                </Button>
+                <Button size="small">
+                  EDIT
                 </Button>
               </CardActions>
             </Card>

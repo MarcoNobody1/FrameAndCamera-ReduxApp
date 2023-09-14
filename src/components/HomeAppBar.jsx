@@ -15,9 +15,16 @@ import {
   Select,
 } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getPhotos } from "../features/search/searchThunks";
 
 export function HomeAppBar() {
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  const handleRandomCall = () =>{
+    dispatch(getPhotos())
+  }
 
   return (
     <>
@@ -58,6 +65,9 @@ export function HomeAppBar() {
 
               <Box sx={{ flexGrow: 1, width: "50%" }}>
                 <SearchBar />
+              </Box>
+              <Box>
+                  <Button onClick={handleRandomCall} variant="outlined">Search</Button>
               </Box>
               <Box sx={{ flexGrow: 1, textAlign: "center" }}>
                 <Link to={"../favs"}>

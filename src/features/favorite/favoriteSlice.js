@@ -20,9 +20,17 @@ export const favoriteSlice = createSlice({
     },
     addFromLocal: (state, action) => {
       state.favorites = action.payload;
+    },
+    searchFavs: (state,action) =>{
+      state.favorites = state.favorites.filter((item) => {
+        return item.altDesc.toLowerCase().trim().replace(/\s+/g, '').includes(action.payload)
+      })
+    },
+    resetFavorites: (state) => {
+      state.favorites = JSON.parse(localStorage.getItem('favsLocal')) || [];
     }
   },
 });
 
-export const { addFavorite, removeFavorite, addFromLocal } = favoriteSlice.actions;
+export const { addFavorite, removeFavorite, addFromLocal, searchFavs, resetFavorites } = favoriteSlice.actions;
 export const favoritePhotos = (state) => state.favorite.favorites;

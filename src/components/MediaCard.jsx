@@ -46,7 +46,7 @@ export const MediaCard = () => {
           const handleDownload = () => {
             
             const url = `${infoPhoto.url}`;
-            const fileName = `${infoPhoto.id}`;
+            const fileName = `${infoPhoto.altDesc}`;
 
             fetch(url)
               .then((response) => response.blob())
@@ -59,7 +59,7 @@ export const MediaCard = () => {
                   imageAlt: "Custom gif",
                   width: "540px",
                   showConfirmButton: false,
-                  timer: 2100,
+                  timer: 1100,
                 });
               })
               .catch((error) => {
