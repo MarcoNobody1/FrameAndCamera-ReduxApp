@@ -54,7 +54,6 @@ export function HomeAppBar() {
           <Container disableGutters maxWidth="xl">
             <Toolbar
               sx={{
-                border: "1px solid red",
                 display: "flex",
                 height: "100px",
                 justifyContent: "center",
