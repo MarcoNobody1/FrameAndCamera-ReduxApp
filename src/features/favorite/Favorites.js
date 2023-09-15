@@ -3,7 +3,6 @@ import { favoritePhotos, removeFavorite } from './favoriteSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveAs } from "file-saver";
 import Swal from 'sweetalert2';
-import gif from "../../assets/download-ok.gif";
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import ModalEditDesc from '../../components/ModalEditDesc';
 
@@ -31,9 +30,6 @@ export const Favorites = () => {
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  html: '<img src="' + gif + '" alt="gif" loading="lazy">',
-                  imageAlt: "Custom gif",
-                  width: "540px",
                   showConfirmButton: false,
                   timer: 1100,
                 });
