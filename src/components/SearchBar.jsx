@@ -48,7 +48,7 @@ export const SearchBar = () => {
       );
     }
     setPrevSearchText(searchText);
-  }, [searchText]);
+  }, [searchText, dispatch, prevSearchText]);
 
   function handleInputChange(event) {
     setSearchText(event.target.value);
