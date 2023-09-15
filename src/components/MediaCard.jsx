@@ -6,7 +6,12 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useDispatch, useSelector } from "react-redux";
-import { info, removeCard, statusinfo, searchedPhotos } from "../features/search/searchSlice";
+import {
+  info,
+  removeCard,
+  statusinfo,
+  searchedPhotos,
+} from "../features/search/searchSlice";
 import { useEffect, useState } from "react";
 import { saveAs } from "file-saver";
 import Swal from "sweetalert2";
@@ -30,7 +35,9 @@ export const MediaCard = () => {
       setCurrentStatus(statusInfo);
     } else if (statusInfo === "fulfilled") {
       setCurrentStatus(statusInfo);
-      setCurrentPhotos(searchedPhotosInfo.length !== 0 ? searchedPhotosInfo : infoPhotos);
+      setCurrentPhotos(
+        searchedPhotosInfo.length !== 0 ? searchedPhotosInfo : infoPhotos
+      );
     }
   }, [statusInfo, infoPhotos, searchedPhotosInfo]);
 
@@ -38,33 +45,33 @@ export const MediaCard = () => {
     dispatch(removeCard(infoPhoto));
     dispatch(addFavorite(infoPhoto));
     dispatch(get1Photo());
-  }
+  };
 
   return (
-    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap",  background: 'url(), lightgray 50% / contain no-repeat, #161616'}}>
       {currentStatus === "fulfilled" ? (
         currenPhotos.map((infoPhoto) => {
           const handleDownload = () => {
-            let timerInterval
+            let timerInterval;
             const url = `${infoPhoto.download}`;
             const fileName = `${infoPhoto.altDesc}`;
 
             Swal.fire({
-              title: 'Auto close alert!',
-              html: 'I will close when your download starts',
+              title: "Auto close alert!",
+              html: "I will close when your download starts",
               timer: 20000,
               timerProgressBar: true,
               didOpen: () => {
-                Swal.showLoading()
+                Swal.showLoading();
               },
               willClose: () => {
-                clearInterval(timerInterval)
-              }
+                clearInterval(timerInterval);
+              },
             }).then((result) => {
               if (result.dismiss === Swal.DismissReason.timer) {
-                console.log('I was closed by the timer')
+                console.log("I was closed by the timer");
               }
-            })
+            });
 
             fetch(url)
               .then((response) => response.blob())
@@ -102,46 +109,52 @@ export const MediaCard = () => {
 
           return (
             <>
-            <Card
-              key={infoPhoto.id}
-              sx={{
-                maxWidth: "25%",
-                height: "380px",
-                p: "auto",
-                m: "auto",
-                mb: 1,
-              }}
-            >
-              <CardMedia
-                component="img"
-                sx={{ height: 140 }}
-                image={infoPhoto.url}
-                title={infoPhoto.altDesc}
-              />
-              <CardContent sx={{ padding: 1 }}>
-                <Typography
-                  gutterBottom
-                  variant="body2"
-                  component="i"
-                  color="text.secondary"
-                >
-                  {infoPhoto.city === null || infoPhoto.city === ''
-                    ? "Photo taken in an unknown place..."
-                    : `Photo taken ${infoPhoto.append} ${infoPhoto.city}, ${infoPhoto.country}`}
-                </Typography>
-                <Typography variant="body1">
-                  {infoPhoto.length === 11 && infoPhoto.altDesc.charAt(0).toUpperCase() +
-                    infoPhoto.altDesc.slice(1) +
-                    "."}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button onClick={() => onAddFavoriteHandler(infoPhoto)} size="small">LIKE</Button>
-                <Button size="small" onClick={handleDownload}>
-                  DOWNLOAD
-                </Button>
-              </CardActions>
-            </Card>
+              <Card
+                key={infoPhoto.id}
+                sx={{
+                  maxWidth: "25%",
+                  height: "380px",
+                  p: "auto",
+                  m: "auto",
+                  mb: 1,
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  sx={{ height: 140 }}
+                  image={infoPhoto.url}
+                  title={infoPhoto.altDesc}
+                />
+                <CardContent sx={{ padding: 1 }}>
+                  <Typography
+                    gutterBottom
+                    variant="body2"
+                    component="i"
+                    color="text.secondary"
+                  >
+                    {infoPhoto.city === null || infoPhoto.city === ""
+                      ? "Photo taken in an unknown place..."
+                      : `Photo taken ${infoPhoto.append} ${infoPhoto.city}, ${infoPhoto.country}`}
+                  </Typography>
+                  <Typography variant="body1">
+                    {infoPhoto.length === 11 &&
+                      infoPhoto.altDesc.charAt(0).toUpperCase() +
+                        infoPhoto.altDesc.slice(1) +
+                        "."}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    onClick={() => onAddFavoriteHandler(infoPhoto)}
+                    size="small"
+                  >
+                    LIKE
+                  </Button>
+                  <Button size="small" onClick={handleDownload}>
+                    DOWNLOAD
+                  </Button>
+                </CardActions>
+              </Card>
             </>
           );
         })
@@ -153,9 +166,20 @@ export const MediaCard = () => {
           footer: "Check your internet connection before trying",
         })
       ) : (
-        <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignContent:"center", alignItems:"center", position: 'absolute', left: "50%", top: "50%" }}>
-        <CircularProgress color="secondary" />
-        <h1>Loading...</h1>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignContent: "center",
+            alignItems: "center",
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+          }}
+        >
+          <CircularProgress color="secondary" />
+          <h1>Loading...</h1>
         </div>
       )}
     </div>

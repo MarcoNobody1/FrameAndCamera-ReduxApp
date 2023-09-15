@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { searchPhotos } from "../features/search/searchThunks";
 import { clearPhotos } from "../features/search/searchSlice";
 import { useLocation } from "react-router-dom";
@@ -19,7 +19,7 @@ const CssTextField = styled(TextField)({
       borderColor: 'transparent',
     },
     '&:hover fieldset': {
-      borderColor: '#B2BAC2',
+      borderColor: 'transparent',
     },
     '&.Mui-focused fieldset': {
       borderColor: 'transparent',
