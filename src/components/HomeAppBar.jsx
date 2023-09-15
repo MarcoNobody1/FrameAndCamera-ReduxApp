@@ -72,7 +72,7 @@ export function HomeAppBar() {
                 gap: "0.625rem",
               }}
             >
-              {location.pathname === "/" ? (
+              {location.pathname === "/" || location.pathname === "/FrameAndCamera-ReduxApp/" ? (
                 <SvgIcon
                   sx={{
                     width: "4.125rem",
@@ -169,7 +169,7 @@ export function HomeAppBar() {
               <SearchBar />
             </Box>
 
-            {location.pathname === "/" ? (
+            {location.pathname === "/" || location.pathname === "/FrameAndCamera-ReduxApp/" ? (
               <Box
                 sx={{
                   display: "flex",
@@ -241,7 +241,7 @@ export function HomeAppBar() {
                 </FormControl>
               </Box>
             )}
-            {location.pathname === "/" ? (
+            {location.pathname === "/" || location.pathname === "/FrameAndCamera-ReduxApp/" ? (
               <Box
                 sx={{
                   display: "flex",
