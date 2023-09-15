@@ -6,9 +6,13 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useDispatch } from 'react-redux';
+import { textChange } from '../features/favorite/favoriteSlice';
 
-export default function ModalEditDesc() {
+export default function ModalEditDesc(props) {
   const [open, setOpen] = React.useState(false);
+  const [textValue, setTextValue] = React.useState(props.texto);
+  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -18,9 +22,19 @@ export default function ModalEditDesc() {
     setOpen(false);
   };
 
-  const handleTextChange = () => {
-
+  const handleTextfieldValueChange = (event) => {
+    setTextValue(event.target.value);
   };
+
+  const handleTextChange = () => {
+    const deploy = {
+      id:props.identity,
+      text: textValue
+    };
+
+    dispatch(textChange(deploy))
+    setOpen(false);
+  }
 
   return (
     <div>
@@ -31,10 +45,11 @@ export default function ModalEditDesc() {
         <DialogTitle>Edit your photo bio:</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            Text before: {props.texto}
           </DialogContentText>
           <TextField
+          onChange={handleTextfieldValueChange}
+            value={textValue}
             autoFocus
             margin="dense"
             id="name"

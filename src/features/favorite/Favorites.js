@@ -22,7 +22,7 @@ export const Favorites = () => {
         {favorites.map((favorite) => {
           const handleDownload = () => {
             const url = `${favorite.url}`;
-            const fileName = `${favorite.id}`;
+            const fileName = `${favorite.altDesc}`;
 
             fetch(url)
               .then((response) => response.blob())
@@ -87,9 +87,9 @@ export const Favorites = () => {
                     : `Photo taken in ${favorite.city}, ${favorite.country}`}
                 </Typography>
                 <Typography variant="body1">
-                  {favorite.altDesc.charAt(0).toUpperCase() +
+                  {favorite ? favorite.altDesc.charAt(0).toUpperCase() +
                     favorite.altDesc.slice(1) +
-                    "."}
+                    "." : "Cargando..."}
                 </Typography>
               </CardContent>
               <CardActions>
@@ -97,7 +97,7 @@ export const Favorites = () => {
                 <Button size="small" onClick={handleDownload}>
                   DOWNLOAD
                 </Button>
-                <ModalEditDesc/>
+                <ModalEditDesc identity={favorite.id} texto={favorite.altDesc}/>
               </CardActions>
             </Card>
           );

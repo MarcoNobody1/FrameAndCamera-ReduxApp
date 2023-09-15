@@ -16,7 +16,7 @@ export const favoriteSlice = createSlice({
     },
     removeFavorite: (state, action) => {
       state.favorites = state.favorites.filter((photo) => photo.id !== action.payload.id);
-      const localphotos = JSON.parse(localStorage.getItem(`favsLocal`));
+      const localphotos = JSON.parse(localStorage.getItem('favsLocal'));
       const filtered = localphotos.filter((photo) => photo.id !== action.payload.id);
       localStorage.setItem(`favsLocal`, JSON.stringify(filtered));
     },
@@ -48,9 +48,28 @@ export const favoriteSlice = createSlice({
         default:
           break;
       }
+    },
+    textChange:  (state, action) => {
+      state.favorites.map((photo)=>{
+        if (photo.id === action.payload.id){
+         photo.altDesc = action.payload.text
+        }
+      })
+      const favs = JSON.parse(localStorage.getItem('favsLocal'));
+      const filteredFavs = favs.map((fav) =>{
+        if (fav.id === action.payload.id){
+           return {
+            ...fav,
+           altDesc: action.payload.text
+          }
+        } else {
+          return fav;
+        }
+      })
+      localStorage.setItem(`favsLocal`, JSON.stringify(filteredFavs));
     }
   },
 });
 
-export const { addFavorite, removeFavorite, addFromLocal, searchFavs, resetFavorites, orderFavorites } = favoriteSlice.actions;
+export const { addFavorite, removeFavorite, addFromLocal, searchFavs, resetFavorites, orderFavorites, textChange } = favoriteSlice.actions;
 export const favoritePhotos = (state) => state.favorite.favorites;
