@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getPhotos, searchPhotos } from "./searchThunks";
+import { get1Photo, getPhotos, searchPhotos } from "./searchThunks";
 
 const initialState = {
   error: "null",
@@ -44,11 +44,23 @@ export const searchSlice = createSlice({
         state.searchStatus = "rejected";
         state.error = action.error.message;
       })
+      .addCase(get1Photo.fulfilled, (state, action) => {
+        state.searchStatus = "fulfilled";
+        state.initialFetch = [...state.initialFetch, action.payload];
+      })
+      .addCase(get1Photo.pending, (state, action) => {
+        state.searchStatus = "pending";
+      })
+      .addCase(get1Photo.rejected, (state, action) => {
+        state.searchStatus = "rejected";
+        state.error = action.error.message;
+      })
   },
 });
 
 export const info = (state) => state.search.initialFetch;
 export const statusinfo = (state) => state.search.status;
 export const searchedPhotos = (state) => state.search.searchedPhotos;
+export const get1 = get1Photo.fulfilled;
 
 export const {removeCard, clearPhotos} = searchSlice.actions;
