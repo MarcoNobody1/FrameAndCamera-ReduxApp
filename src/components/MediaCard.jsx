@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 import gif from "../assets/download-ok.gif";
 import { CircularProgress } from "@mui/material";
 import { addFavorite } from "../features/favorite/favoriteSlice";
+import { get1Photo } from "../features/search/searchThunks";
 
 export const MediaCard = () => {
   const [currentStatus, setCurrentStatus] = useState("");
@@ -36,7 +37,7 @@ export const MediaCard = () => {
   const onAddFavoriteHandler = (infoPhoto) => {
     dispatch(removeCard(infoPhoto));
     dispatch(addFavorite(infoPhoto));
-    
+    dispatch(get1Photo());
   }
 
   return (
@@ -44,9 +45,26 @@ export const MediaCard = () => {
       {currentStatus === "fulfilled" ? (
         currenPhotos.map((infoPhoto) => {
           const handleDownload = () => {
-            
-            const url = `${infoPhoto.url}`;
+            let timerInterval
+            const url = `${infoPhoto.download}`;
             const fileName = `${infoPhoto.altDesc}`;
+
+            Swal.fire({
+              title: 'Auto close alert!',
+              html: 'I will close when your download starts',
+              timer: 20000,
+              timerProgressBar: true,
+              didOpen: () => {
+                Swal.showLoading()
+              },
+              willClose: () => {
+                clearInterval(timerInterval)
+              }
+            }).then((result) => {
+              if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+              }
+            })
 
             fetch(url)
               .then((response) => response.blob())
@@ -112,7 +130,7 @@ export const MediaCard = () => {
                     : `Photo taken ${infoPhoto.append} ${infoPhoto.city}, ${infoPhoto.country}`}
                 </Typography>
                 <Typography variant="body1">
-                  {infoPhoto && infoPhoto.altDesc.charAt(0).toUpperCase() +
+                  {infoPhoto.length === 11 && infoPhoto.altDesc.charAt(0).toUpperCase() +
                     infoPhoto.altDesc.slice(1) +
                     "."}
                 </Typography>
