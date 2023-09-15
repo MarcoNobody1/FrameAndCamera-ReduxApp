@@ -6,10 +6,10 @@ const random1 = "photos/random?count=1"
 const search = "search/photos?query=";
 
 const clientId = "client_id=cpDUshpWYRdkrCVucZevE9z5iRVI_Bq01VV8Z7HRDlE";
-const clientId2 = "client_id=y7WCJuIpaCe_Ajeix9l-J0g9aTj1Lha5YuEJWbp3Ldo";
-const clientId3 = "client_id=nXYdqrC3SY0K5xz_xLvHlgzJQrHnoCpNXQr8uX-cx10";
+//const clientId2 = "client_id=y7WCJuIpaCe_Ajeix9l-J0g9aTj1Lha5YuEJWbp3Ldo";
+//const clientId3 = "client_id=nXYdqrC3SY0K5xz_xLvHlgzJQrHnoCpNXQr8uX-cx10";
 export const getPhotos = createAsyncThunk("search/getPhotos", async () => {
-  const request = await fetch(`${baseUrl}${random30}&${clientId3}`);
+  const request = await fetch(`${baseUrl}${random30}&${clientId}`);
   const rawphotos = await request.json();
 
   return rawphotos.map((rawphoto) => {
@@ -30,7 +30,7 @@ export const getPhotos = createAsyncThunk("search/getPhotos", async () => {
 });
 
 export const get1Photo = createAsyncThunk("search/get1Photo", async () => {
-  const request = await fetch(`${baseUrl}${random1}&${clientId3}`);
+  const request = await fetch(`${baseUrl}${random1}&${clientId}`);
   const rawphotos = await request.json();
   const onephoto = {
     id: rawphotos[0].id,
@@ -50,7 +50,7 @@ export const get1Photo = createAsyncThunk("search/get1Photo", async () => {
 });
 
 export const searchPhotos = createAsyncThunk("search/searchPhotos", async (searching) => {
-  const request = await fetch(`${baseUrl}${search}${searching}&${clientId3}`);
+  const request = await fetch(`${baseUrl}${search}${searching}&${clientId}`);
   const searchedphotos = await request.json();
   console.log(searchedphotos);
   return searchedphotos.results.map((searchphoto) => {

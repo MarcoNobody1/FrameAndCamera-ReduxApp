@@ -1,6 +1,6 @@
 import React from 'react'
 import { HomeAppBar } from "../components/HomeAppBar";
-import { Favorites } from "../features/favorite/Favorites"
+import { Favorites } from "../features/favorite/favorites";
 
 
 
