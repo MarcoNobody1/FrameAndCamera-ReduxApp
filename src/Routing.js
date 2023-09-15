@@ -20,6 +20,10 @@ export const Routing = () => {
     <>
       <Routes>
         <Route path="/" element={<Home />}></Route>
+
+        <Route path='/FrameAndCamera-ReduxApp' element={<Home />} />
+        <Route path='*' element={<Home />} />
+        
         <Route path="/favs" element={<Favs />}></Route>
       </Routes>
     </>
