@@ -14,9 +14,9 @@ code {
 
 @font-face {
   font-family: 'AvenirNext';
-  src: url('/resources/fonts/avenir-next-world-regular.otf');
+  src: url('/src/assets/fonts/avenir-next-world-regular.otf');
 }
 
 *{
-  font-family: 'AvenirNext';
+  font-family: 'AvenirNext' !important;
 }

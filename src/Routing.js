@@ -15,7 +15,7 @@ export const Routing = () => {
 
     rawFavs && dispatch(addFromLocal(rawFavs));
 
-  }, [dispatch]);
+  }, [dispatch, rawFavs]);
   return (
     <>
       <Routes>

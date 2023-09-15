@@ -15,15 +15,14 @@ import {
   Select,
 } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getPhotos } from "../features/search/searchThunks";
-import { favoritePhotos, orderFavorites } from "../features/favorite/favoriteSlice";
+import { orderFavorites } from "../features/favorite/favoriteSlice";
 
 export function HomeAppBar() {
   const location = useLocation();
   const dispatch = useDispatch();
   const [orderBy, setOrderBy] = useState("");
-  const favorites = useSelector(favoritePhotos);
 
   //Hace un dispatch de fotos random cuando haces click en el botón.
   const handleRandomCall = () =>{
