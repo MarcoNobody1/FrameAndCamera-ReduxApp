@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import { SearchBar } from "./SearchBar";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -145,8 +143,6 @@ export function HomeAppBar() {
               )}
 
               <Typography
-                component="a"
-                href="/"
                 sx={{
                   textAlign: "center",
                   fontFamily: "AvenirNext",

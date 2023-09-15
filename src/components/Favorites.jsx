@@ -1,5 +1,5 @@
 import React from "react";
-import { favoritePhotos, removeFavorite } from "./favoriteSlice";
+import { favoritePhotos, removeFavorite } from "../features/favorite/favoriteSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { saveAs } from "file-saver";
 import Swal from "sweetalert2";
@@ -14,8 +14,8 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import ModalEditDesc from "../../components/ModalEditDesc";
-import logo from "../../assets/logos/logo-favs.png";
+import ModalEditDesc from "./ModalEditDesc";
+import logo from "../assets/logos/logo-favs.png"
 
 export const Favorites = () => {
   const favorites = useSelector(favoritePhotos);
