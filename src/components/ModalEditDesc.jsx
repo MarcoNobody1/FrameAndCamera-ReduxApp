@@ -8,6 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch } from 'react-redux';
 import { textChange } from '../features/favorite/favoriteSlice';
+import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 
 export default function ModalEditDesc(props) {
   const [open, setOpen] = React.useState(false);
@@ -20,6 +21,7 @@ export default function ModalEditDesc(props) {
 
   const handleClose = () => {
     setOpen(false);
+    setTextValue(props.texto);
   };
 
   const handleTextfieldValueChange = (event) => {
@@ -38,8 +40,8 @@ export default function ModalEditDesc(props) {
 
   return (
     <div>
-      <Button size="small" onClick={handleClickOpen}>
-        EDIT DESCRIPTION
+      <Button variant="contained"  size="small" onClick={handleClickOpen}>
+        <EditTwoToneIcon fontSize='medium'/>
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit your photo bio:</DialogTitle>
@@ -49,6 +51,12 @@ export default function ModalEditDesc(props) {
           </DialogContentText>
           <TextField
           onChange={handleTextfieldValueChange}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              event.preventDefault();
+              handleTextChange();
+            }
+          }}
             value={textValue}
             autoFocus
             margin="dense"
@@ -60,7 +68,9 @@ export default function ModalEditDesc(props) {
           />
         </DialogContent>
         <DialogActions sx={{justifyContent: 'flex-start'}}>
-          <Button onClick={handleTextChange}>Save</Button>
+          <Button
+          
+          onClick={handleTextChange}>Save</Button>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>

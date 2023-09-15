@@ -254,7 +254,7 @@ export function HomeAppBar() {
                   gap: "10px",
                 }}
               >
-                <Link to={"../favs"}>
+                <Link to={"/favs"}>
                   <Button
                     sx={{
                       color: "#BB37CD",
@@ -273,7 +273,7 @@ export function HomeAppBar() {
               </Box>
             ) : (
               <Box sx={{ textAlign: "center" }}>
-                <Link to={"../"}>
+                <Link to={"/"}>
                   <Button
                   sx={{
                     color: "#FC7CBC",
