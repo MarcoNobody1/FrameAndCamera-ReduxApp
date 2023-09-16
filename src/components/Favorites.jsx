@@ -35,10 +35,9 @@ export const Favorites = () => {
 
   const body = {
     display: "grid",
-    gridTemplateColumns: "repeat(4, 1fr)",
-    gridAutoRows: "28.125rem",
-    gridGap: "0.2rem",
-    width: "100vw",
+    gridTemplateColumns: "repeat(auto-fill, minmax(22.5rem, 1fr))",
+    gridAutoRows: "450px",
+    gridGap: 0,
     gridAutoFlow: "dense",
     backgroundImage: `url(${logo})`,
     backgroundPosition: "center",
@@ -175,12 +174,12 @@ export const Favorites = () => {
                       display: "flex",
                       paddingLeft: "0.8rem",
                       paddingTop: "0.8rem",
-                      width: "100%",
+                      minHeight:'280px'
                     }}
                   >
                     <CardMedia
                       component="img"
-                      sx={{ height: 270, width: "73%" }}
+                      sx={{ height: 'auto', width: "73%", maxHeight:270, objectFit:'contain'}}
                       image={favorite.url}
                       title={favorite.altDesc}
                     />
