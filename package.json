@@ -1,7 +1,7 @@
 {
   "name": "frameandcamera",
   "version": "0.1.0",
-  "homepage": "https://MarcoNobody1.github.io/FrameAndCamera-ReduxApp",
+  "homepage": "https://MarcoNobody1.github.io/FrameAndCamera-ReduxApp/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",

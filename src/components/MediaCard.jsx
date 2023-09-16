@@ -54,7 +54,7 @@ export const MediaCard = () => {
     gridTemplateColumns: "repeat(4, 1fr)",
     gridAutoRows: "28.125rem",
     gridGap: "0",
-    width: "100vw",
+    width: "100%",
     gridAutoFlow: "dense",
     backgroundImage: `url(${logo})`,
     backgroundPosition: "center bottom",
@@ -67,7 +67,7 @@ export const MediaCard = () => {
   return (
     <div style={body}>
       {currentStatus === "fulfilled" ? (
-        currenPhotos.map((infoPhoto) => {
+        currenPhotos.map((infoPhoto, index) => {
           const handleDownload = () => {
             let timerInterval;
             const url = `${infoPhoto.download}`;
@@ -123,7 +123,7 @@ export const MediaCard = () => {
 
           return (
             <>
-              <div style={{ position: "relative" }}>
+              <div key={index} style={{ position: "relative" }}>
                 <Card
                   key={infoPhoto.id}
                   style={{

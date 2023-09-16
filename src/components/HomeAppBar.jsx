@@ -62,7 +62,7 @@ export function HomeAppBar() {
           >
             <Box
               component="a"
-              href="/"
+              href="/FrameAndCamera-ReduxApp/Home"
               sx={{
                 textDecoration: "none",
                 display: "flex",
@@ -72,7 +72,7 @@ export function HomeAppBar() {
                 gap: "0.625rem",
               }}
             >
-              {location.pathname === "/" || location.pathname === "/FrameAndCamera-ReduxApp/" ? (
+              {location.pathname === "/FrameAndCamera-ReduxApp/Home"  ? (
                 <SvgIcon
                   sx={{
                     width: "4.125rem",
@@ -100,8 +100,8 @@ export function HomeAppBar() {
                         y2="38.1396"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#04DBF5" />
-                        <stop offset="1" stop-color="#FA04E0" />
+                        <stop stopColor="#04DBF5" />
+                        <stop offset="1" stopColor="#FA04E0" />
                       </linearGradient>
                     </defs>
                   </svg>
@@ -134,8 +134,8 @@ export function HomeAppBar() {
                         y2="38.1396"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#E82E78" />
-                        <stop offset="1" stop-color="#F198C0" />
+                        <stop stopColor="#E82E78" />
+                        <stop offset="1" stopColor="#F198C0" />
                       </linearGradient>
                     </defs>
                   </svg>
@@ -169,7 +169,7 @@ export function HomeAppBar() {
               <SearchBar />
             </Box>
 
-            {location.pathname === "/" || location.pathname === "/FrameAndCamera-ReduxApp/" ? (
+            {location.pathname === "/FrameAndCamera-ReduxApp/Home" ? (
               <Box
                 sx={{
                   display: "flex",
@@ -241,7 +241,7 @@ export function HomeAppBar() {
                 </FormControl>
               </Box>
             )}
-            {location.pathname === "/" || location.pathname === "/FrameAndCamera-ReduxApp/" ? (
+            {location.pathname === "/FrameAndCamera-ReduxApp/Home"  ? (
               <Box
                 sx={{
                   display: "flex",
@@ -250,7 +250,7 @@ export function HomeAppBar() {
                   gap: "10px",
                 }}
               >
-                <Link to={"/favs"}>
+                <Link to={"/FrameAndCamera-ReduxApp/favs"}>
                   <Button
                     sx={{
                       color: "#BB37CD",
@@ -269,7 +269,7 @@ export function HomeAppBar() {
               </Box>
             ) : (
               <Box sx={{ textAlign: "center" }}>
-                <Link to={"/"}>
+                <Link to={"/FrameAndCamera-ReduxApp/Home"}>
                   <Button
                   sx={{
                     color: "#FC7CBC",
