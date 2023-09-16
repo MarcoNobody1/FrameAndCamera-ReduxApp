@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useDispatch, useSelector } from "react-redux";
 import FavoriteTwoToneIcon from "@mui/icons-material/FavoriteTwoTone";
-import DownloadSharpIcon from '@mui/icons-material/DownloadSharp';
+import DownloadSharpIcon from "@mui/icons-material/DownloadSharp";
 import {
   info,
   removeCard,
@@ -51,10 +51,9 @@ export const MediaCard = () => {
 
   const body = {
     display: "grid",
-    gridTemplateColumns: "repeat(4, 1fr)",
-    gridAutoRows: "28.125rem",
+    gridTemplateColumns: "repeat(auto-fit, minmax(22.5rem, 1fr))",
+    gridAutoRows: "450px",
     gridGap: "0",
-    width: "100%",
     gridAutoFlow: "dense",
     backgroundImage: `url(${logo})`,
     backgroundPosition: "center bottom",
@@ -121,6 +120,11 @@ export const MediaCard = () => {
               });
           };
 
+          const formatedDesc =
+            infoPhoto.altDesc.charAt(0).toUpperCase() +
+            infoPhoto.altDesc.slice(1) +
+            ".";
+
           return (
             <>
               <div key={index} style={{ position: "relative" }}>
@@ -157,9 +161,9 @@ export const MediaCard = () => {
                         style={{
                           width: "100%",
                           fontWeight: 700,
-                          fontSize: '0.85rem',
+                          fontSize: "0.85rem",
                           color: "white",
-                          textShadow: '0px 4px 4px rgba(0, 0, 0, 0.50)',
+                          textShadow: "0px 4px 4px rgba(0, 0, 0, 0.50)",
                         }}
                         gutterBottom
                         variant="body2"
@@ -172,15 +176,13 @@ export const MediaCard = () => {
                         style={{
                           color: "white",
                           fontWeight: 500,
-                          paddingTop: '0.5rem',
-                          fontSize: '1rem',
-                          textShadow: '0px 4px 4px rgba(0, 0, 0, 0.50)',
+                          paddingTop: "0.5rem",
+                          fontSize: "1rem",
+                          textShadow: "0px 4px 4px rgba(0, 0, 0, 0.50)",
                         }}
                         variant="body1"
                       >
-                        {infoPhoto.altDesc.charAt(0).toUpperCase() +
-                          infoPhoto.altDesc.slice(1) +
-                          "."}
+                        {formatedDesc}
                       </Typography>
                     </div>
                     <div
@@ -199,8 +201,6 @@ export const MediaCard = () => {
                   <div
                     style={{
                       width: "100%",
-                      justifyContent: "center",
-                      alignItems: "center",
                       position: "absolute",
                       zIndex: 3,
                       left: "0",
@@ -216,10 +216,14 @@ export const MediaCard = () => {
                     >
                       <Button
                         variant="contained"
-                        startIcon={<FavoriteTwoToneIcon/>}
+                        startIcon={<FavoriteTwoToneIcon />}
                         onClick={() => onAddFavoriteHandler(infoPhoto)}
                         size="large"
-                        style={{ backgroundColor: '#BB37CD', color: '#ECEBF3', fontWeight: 400 }}
+                        style={{
+                          backgroundColor: "#BB37CD",
+                          color: "#ECEBF3",
+                          fontWeight: 400,
+                        }}
                       >
                         LIKE
                       </Button>
@@ -228,7 +232,11 @@ export const MediaCard = () => {
                         endIcon={<DownloadSharpIcon />}
                         size="large"
                         onClick={handleDownload}
-                        style={{ backgroundColor: '#5197E4', color: '#ECEBF3', fontWeight: 400 }}
+                        style={{
+                          backgroundColor: "#5197E4",
+                          color: "#ECEBF3",
+                          fontWeight: 400,
+                        }}
                       >
                         DOWNLOAD
                       </Button>
@@ -241,10 +249,13 @@ export const MediaCard = () => {
                     position: "absolute",
                     top: "0",
                     backgroundImage: `url(${infoPhoto.url})`,
+                    backgroundPosition: "0% 0%",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
                     width: "100%",
                     height: "100%",
-                    filter: "blur(12.5px)",
-                    opacity:'0.8',
+                    filter: "blur(3px)",
+                    opacity: "0.8",
                     zIndex: 0,
                   }}
                 ></div>
