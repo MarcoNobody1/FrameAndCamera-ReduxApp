@@ -1,12 +1,20 @@
 import React from "react";
-import { favoritePhotos, removeFavorite } from "../features/favorite/favoriteSlice";
+import {
+  favoritePhotos,
+  removeFavorite,
+} from "../features/favorite/favoriteSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { saveAs } from "file-saver";
 import Swal from "sweetalert2";
-import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp';
+import FavoriteSharpIcon from "@mui/icons-material/FavoriteSharp";
 import DownloadSharpIcon from "@mui/icons-material/DownloadSharp";
-import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
+import FavoriteTwoToneIcon from "@mui/icons-material/FavoriteTwoTone";
+import PanoramaHorizontalSharpIcon from "@mui/icons-material/PanoramaHorizontalSharp";
+import PanoramaVerticalSharpIcon from "@mui/icons-material/PanoramaVerticalSharp";
+import DateRangeSharpIcon from "@mui/icons-material/DateRangeSharp";
+import HeartBrokenSharpIcon from "@mui/icons-material/HeartBrokenSharp";
 import {
+  Box,
   Button,
   Card,
   CardActions,
@@ -15,7 +23,7 @@ import {
   Typography,
 } from "@mui/material";
 import ModalEditDesc from "./ModalEditDesc";
-import logo from "../assets/logos/logo-favs.png"
+import logo from "../assets/logos/logo-favs.png";
 
 export const Favorites = () => {
   const favorites = useSelector(favoritePhotos);
@@ -29,7 +37,7 @@ export const Favorites = () => {
     display: "grid",
     gridTemplateColumns: "repeat(4, 1fr)",
     gridAutoRows: "28.125rem",
-    gridGap: "0",
+    gridGap: "0.2rem",
     width: "100vw",
     gridAutoFlow: "dense",
     backgroundImage: `url(${logo})`,
@@ -38,7 +46,8 @@ export const Favorites = () => {
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundColor: "#161616",
-    minHeight: "750px",
+    minHeight: "85.50vw",
+    height: "auto",
   };
   if (favorites.length === 0) {
     return (
@@ -50,7 +59,8 @@ export const Favorites = () => {
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
           backgroundAttachment: "fixed",
-          height: "850px",
+          minHeight: "85.5vw",
+          height: "auto",
           alignItems: "center",
           color: "white",
           textAlign: "center",
@@ -60,13 +70,18 @@ export const Favorites = () => {
           lineHeight: "normal",
           display: "flex",
           flexDirection: "column",
-          alignContent:"center",
-          justifyContent: 'center',
+          alignContent: "center",
+          justifyContent: "flex-start",
           textShadow: "0px 4px 4px rgba(0, 0, 0, 0.50)",
         }}
       >
-        Oops...it looks like you still don't have any photos saved in favorites.
-        Click on the <FavoriteTwoToneIcon style={{width:'60px', height:'60px'}} /> icon to add a photo to your collection!
+        <p style={{ marginTop: "17vw", fontSize: "2vw" }}>
+          {" "}
+          Oops...it looks like you still don't have any photos saved in
+          favorites. Click on the{" "}
+          <FavoriteTwoToneIcon style={{ fontSize: "2vw" }} /> icon to add a
+          photo to your collection!
+        </p>
       </div>
     );
   } else {
@@ -126,6 +141,17 @@ export const Favorites = () => {
               });
           };
 
+          const fecha = new Date(favorite.date);
+          const fechaFormat = fecha.toISOString().slice(0, 10);
+
+          const stylefechas = {
+            color: "white",
+            fontWeight: 800,
+            textShadow: "0px 4px 4px rgba(0, 0, 0, 0.50)",
+            textAlign: "center",
+            fontSize: "0.7rem",
+          };
+
           return (
             <>
               <div style={{ position: "relative" }}>
@@ -133,7 +159,7 @@ export const Favorites = () => {
                   key={favorite.id}
                   style={{
                     backgroundColor: "transparent",
-                    zIndex: "1",
+                    zIndex: "2",
                     position: "absolute",
                     width: "100%",
                     height: "100%",
@@ -144,12 +170,57 @@ export const Favorites = () => {
                     mb: 1,
                   }}
                 >
-                  <CardMedia
-                    component="img"
-                    sx={{ height: 250 }}
-                    image={favorite.url}
-                    title={favorite.altDesc}
-                  />
+                  <Box
+                    style={{
+                      display: "flex",
+                      paddingLeft: "0.8rem",
+                      paddingTop: "0.8rem",
+                      width: "100%",
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      sx={{ height: 270, width: "73%" }}
+                      image={favorite.url}
+                      title={favorite.altDesc}
+                    />
+                    <Box
+                      style={{
+                        width: "20%",
+                        display: "flex",
+                        justifyContent: "space-around",
+                        flexDirection: "column",
+                        alignItems: "center",
+                      }}
+                    >
+                      <FavoriteSharpIcon
+                        sx={{
+                          fontSize: "1.5rem",
+                          color:'white',
+                        }}
+                      />
+                      <Typography style={stylefechas}>
+                        {favorite.likes}
+                      </Typography>
+                      <Typography style={stylefechas}>LIKES</Typography>
+                      <PanoramaHorizontalSharpIcon
+                        sx={{ fontSize: "1.5rem", color:'white'}}
+                      />
+                      <Typography style={stylefechas}>
+                        {favorite.width}
+                      </Typography>
+                      <Typography style={stylefechas}>WIDTH</Typography>
+                      <PanoramaVerticalSharpIcon sx={{ fontSize: "1.5rem", color:'white' }} />
+                      <Typography style={stylefechas}>
+                        {favorite.height}
+                      </Typography>
+                      <Typography style={stylefechas}>HEIGHT</Typography>
+                      <DateRangeSharpIcon sx={{ fontSize: "1.5rem", color:'white' }} />
+                      <Typography style={stylefechas}>{fechaFormat}</Typography>
+                      <Typography style={stylefechas}>DATE</Typography>
+                    </Box>
+                  </Box>
+
                   <CardContent sx={{ pt: 1 }}>
                     <div
                       style={{
@@ -189,18 +260,6 @@ export const Favorites = () => {
                           : "Cargando..."}
                       </Typography>
                     </div>
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "55.7%",
-                        left: 0,
-                        backgroundColor: "black",
-                        width: "100%",
-                        height: "100%",
-                        opacity: 0.45,
-                        zIndex: 0,
-                      }}
-                    ></div>
                   </CardContent>
                   <div
                     style={{
@@ -222,16 +281,17 @@ export const Favorites = () => {
                     >
                       <Button
                         variant="contained"
-                        startIcon={< FavoriteSharpIcon/>}
+                        startIcon={<HeartBrokenSharpIcon />}
                         onClick={() => onRemoveFavoriteHandler(favorite)}
                         size="small"
                         style={{
                           backgroundColor: "#BB37CD",
                           color: "#ECEBF3",
                           fontWeight: 400,
+                          fontSize: "0.7rem",
                         }}
                       >
-                        REMOVE LIKE
+                        REMOVE
                       </Button>
                       <Button
                         variant="contained"
@@ -242,14 +302,19 @@ export const Favorites = () => {
                           backgroundColor: "#5197E4",
                           color: "#ECEBF3",
                           fontWeight: 400,
+                          fontSize: "0.7rem",
                         }}
                       >
                         DOWNLOAD
                       </Button>
-                      <ModalEditDesc
-                        identity={favorite.id}
-                        texto={favorite.altDesc}
-                      />
+                      <Button
+                      variant="contained"
+                       sx={{p:0, minWidth:'0'}}>
+                        <ModalEditDesc
+                          identity={favorite.id}
+                          texto={favorite.altDesc}
+                        />
+                      </Button>
                     </CardActions>
                   </div>
                 </Card>
@@ -259,11 +324,32 @@ export const Favorites = () => {
                     position: "absolute",
                     top: "0",
                     backgroundImage: `url(${favorite.url})`,
+                    backgroundPosition: "0% 0%",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
                     width: "100%",
                     height: "100%",
-                    filter: "blur(12.5px)",
+                    filter: "blur(3px)",
                     opacity: "0.8",
                     zIndex: 0,
+                  }}
+                ></div>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "0",
+                    right: "0",
+                    marginTop:'0.8rem',
+                    marginRight: '0.8rem',
+                    backgroundColor:'black',
+                    backgroundPosition: "0% 0%",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    width: "25%",
+                    height: "60%",
+                    filter: "blur(3px)",
+                    opacity: "0.2",
+                    zIndex: 1,
                   }}
                 ></div>
               </div>
