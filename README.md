@@ -2,6 +2,8 @@
 
 Proyecto ***Frame&Camera*** es un proyecto de programación enfocado a la realización en Figma del diseño de una página web que sirva como dashboard para descargar y gestionar imágenes, así como a la programación posterior de esa misma página con React y Redux. 
 
+Diseño de Figma disponible [**aquí**](https://www.figma.com/file/suuG5YZwgdLTUg6EMdEeWu/Proyecto-3%3A-Frame%26Camera?type=design&node-id=0%3A1&mode=dev).
+
 ## Objetivo del Proyecto
 
 El objetivo del proyecto es demostrar los conocimientos sobre el lenguaje de programación a la vez que se siguen unos requisitos para realizar el diseño de la página a realizar.
