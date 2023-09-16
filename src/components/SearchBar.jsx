@@ -59,7 +59,7 @@ export const SearchBar = () => {
       <CssTextField
       fullWidth
       id="custom-css-outlined-input"
-        onChange={location.pathname === "/" ? onSearchHandler : handleInputChange}
+        onChange={location.pathname === "/FrameAndCamera-ReduxApp/Home" ? onSearchHandler : handleInputChange}
         sx={
           {
             borderRadius: "3.125rem",
