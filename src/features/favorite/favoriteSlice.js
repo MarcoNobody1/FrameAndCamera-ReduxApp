@@ -54,6 +54,7 @@ export const favoriteSlice = createSlice({
         if (photo.id === action.payload.id){
          photo.altDesc = action.payload.text
         }
+        return photo;
       })
       const favs = JSON.parse(localStorage.getItem('favsLocal'));
       const filteredFavs = favs.map((fav) =>{

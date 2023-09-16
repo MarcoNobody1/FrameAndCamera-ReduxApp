@@ -52,7 +52,6 @@ export const get1Photo = createAsyncThunk("search/get1Photo", async () => {
 export const searchPhotos = createAsyncThunk("search/searchPhotos", async (searching) => {
   const request = await fetch(`${baseUrl}${search}${searching}&${clientId2}`);
   const searchedphotos = await request.json();
-  console.log(searchedphotos);
   return searchedphotos.results.map((searchphoto) => {
     return {
       id: searchphoto.id,
