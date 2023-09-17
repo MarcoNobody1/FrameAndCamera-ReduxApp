@@ -17,6 +17,11 @@ code {
   src: url('/src/assets/fonts/avenir-next-world-regular.otf');
 }
 
-*{
+* {
   font-family: 'AvenirNext' !important;
+}
+
+ul {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
