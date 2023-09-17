@@ -153,7 +153,7 @@ export const Favorites = () => {
 
           return (
             <>
-              <div style={{ position: "relative" }}>
+              <div style={{ position: "relative", border: '4px solid rgba(0, 0, 0, 0.3)' }}>
                 <Card
                   key={favorite.id}
                   style={{

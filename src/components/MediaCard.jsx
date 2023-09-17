@@ -51,7 +51,7 @@ export const MediaCard = () => {
 
   const body = {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(22.5rem, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(20rem, 1fr))",
     gridAutoRows: "450px",
     gridGap: "0",
     gridAutoFlow: "dense",
@@ -120,10 +120,10 @@ export const MediaCard = () => {
               });
           };
 
-          const formatedDesc =
+          const formatedDesc = infoPhoto.altDesc ?
             infoPhoto.altDesc.charAt(0).toUpperCase() +
             infoPhoto.altDesc.slice(1) +
-            ".";
+            "." : "I don't know what is this picture...";
 
           return (
             <>
