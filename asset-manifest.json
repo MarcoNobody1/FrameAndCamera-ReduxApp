@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/FrameAndCamera-ReduxApp/static/css/main.8d755246.css",
-    "main.js": "/FrameAndCamera-ReduxApp/static/js/main.fc3dba67.js",
+    "main.css": "/FrameAndCamera-ReduxApp/static/css/main.1b85bca6.css",
+    "main.js": "/FrameAndCamera-ReduxApp/static/js/main.51f8a6d7.js",
+    "static/media/logo-main.png": "/FrameAndCamera-ReduxApp/static/media/logo-main.e9b9dc9516f971970c56.png",
+    "static/media/logo-favs.png": "/FrameAndCamera-ReduxApp/static/media/logo-favs.c1d97e2cb92e3365329f.png",
     "static/media/avenir-next-world-regular.otf": "/FrameAndCamera-ReduxApp/static/media/avenir-next-world-regular.8b084474a649905fc148.otf",
-    "static/media/logo-main.png": "/FrameAndCamera-ReduxApp/static/media/logo-main.9b73c32173517319d256.png",
-    "static/media/logo-favs.png": "/FrameAndCamera-ReduxApp/static/media/logo-favs.ec7f2d253a36e07d9288.png",
     "index.html": "/FrameAndCamera-ReduxApp/index.html",
-    "main.8d755246.css.map": "/FrameAndCamera-ReduxApp/static/css/main.8d755246.css.map",
-    "main.fc3dba67.js.map": "/FrameAndCamera-ReduxApp/static/js/main.fc3dba67.js.map"
+    "main.1b85bca6.css.map": "/FrameAndCamera-ReduxApp/static/css/main.1b85bca6.css.map",
+    "main.51f8a6d7.js.map": "/FrameAndCamera-ReduxApp/static/js/main.51f8a6d7.js.map"
   },
   "entrypoints": [
-    "static/css/main.8d755246.css",
-    "static/js/main.fc3dba67.js"
+    "static/css/main.1b85bca6.css",
+    "static/js/main.51f8a6d7.js"
   ]
 }
