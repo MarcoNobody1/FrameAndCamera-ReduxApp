@@ -1,0 +1,49 @@
+@media (max-width: 1150px) {
+    .logoText {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .favIcon {
+      display: flex !important;
+      color: #BB37CD;
+    }
+  
+    .homeIcon {
+      display: flex !important;
+      color: #FC7CBC;
+    }
+  
+    .searchIcon {
+      display: flex !important;
+      color: #5197E4;
+    }
+  
+    .searchButton,
+    .favButton, .homeButton {
+      display: none !important;
+  
+    }
+  
+    .mainIconLogo, .favIconLogo {
+      width: 1.64381rem !important;
+    }
+  
+    .searchBar {
+      width: 50% !important;
+    }
+  
+    .orderBy {
+        font-size: 2.5vw !important;
+    }
+  }
+
+  @media (min-width: 1536px){
+    .appBar{
+      max-width: none;
+    }
+      
+  }
+
+  

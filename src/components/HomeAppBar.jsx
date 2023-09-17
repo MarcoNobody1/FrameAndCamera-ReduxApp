@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -7,7 +7,8 @@ import Container from "@mui/material/Container";
 import { SearchBar } from "./SearchBar";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import HomeSharpIcon from '@mui/icons-material/HomeSharp';
+import HomeSharpIcon from "@mui/icons-material/HomeSharp";
+import styles from "../styles/HomeAppBar.module.css"
 import {
   Button,
   FormControl,
@@ -26,7 +27,6 @@ export function HomeAppBar() {
   const dispatch = useDispatch();
   const [orderBy, setOrderBy] = useState("");
 
-  //Hace un dispatch de fotos random cuando haces click en el botón.
   const handleRandomCall = () => {
     dispatch(getPhotos());
   };
@@ -41,39 +41,49 @@ export function HomeAppBar() {
     <>
       <AppBar
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
           background: "rgba(22, 22, 22, 0.85)",
           height: "100px",
+          textAlign: "center",
         }}
         position="sticky"
       >
-        <Container disableGutters maxWidth="xl">
+        <Container
+        className={styles.appBar}
+          style={{
+            marginRight: 0,
+            marginLeft: 0,
+            textAlign: "center",
+          }}
+          disableGutters
+          maxWidth="xl"
+        >
           <Toolbar
             sx={{
+              textDecoration: "none",
               display: "flex",
-              height: "100px",
-              justifyContent: "center",
+              padding: "0.4375rem 0rem",
+              justifyContent: "space-evenly",
               alignItems: "center",
-              gap: "3.125rem",
+              textAlign: "center",
+            }}
+            style={{
+              marginRight: 0,
+              marginLeft: 0,
             }}
             disableGutters
           >
             <Box
-              component="a"
-              href="/FrameAndCamera-ReduxApp/Home"
               sx={{
                 textDecoration: "none",
                 display: "flex",
                 padding: "0.4375rem 0rem",
-                justifyContent: "center",
+                justifyContent: "space-evenly",
                 alignItems: "center",
-                gap: "0.625rem",
               }}
             >
-              {location.pathname === "/FrameAndCamera-ReduxApp/Home"  ? (
+              {location.pathname === "/FrameAndCamera-ReduxApp/Home" ? (
                 <SvgIcon
+                  className={styles.mainIconLogo}
                   sx={{
                     width: "4.125rem",
                     height: "4.75rem",
@@ -108,6 +118,7 @@ export function HomeAppBar() {
                 </SvgIcon>
               ) : (
                 <SvgIcon
+                  className={styles.favIconLogo}
                   sx={{
                     width: "4.125rem",
                     height: "4.75rem",
@@ -143,6 +154,7 @@ export function HomeAppBar() {
               )}
 
               <Typography
+                className={styles.logoText}
                 sx={{
                   textAlign: "center",
                   fontFamily: "AvenirNext",
@@ -158,12 +170,12 @@ export function HomeAppBar() {
             </Box>
 
             <Box
+              className={styles.searchBar}
               sx={{
-                width: "32.4375rem",
+                width: "40%",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                gap: "10px",
               }}
             >
               <SearchBar />
@@ -175,12 +187,11 @@ export function HomeAppBar() {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  gap: "10px",
                 }}
               >
                 <Button
+                  className={styles.searchButton}
                   sx={{
-                    fontSize: "0.875rem",
                     fontWeight: "600",
                     color: "#5197E4",
                     borderColor: "#5197E4",
@@ -193,14 +204,20 @@ export function HomeAppBar() {
                   size="medium"
                   startIcon={<SearchIcon />}
                 >
-                  Search
+                  Random Search
                 </Button>
+                <SearchIcon
+                  className={styles.searchIcon}
+                  style={{ display: "none" }}
+                  onClick={handleRandomCall}
+                />
               </Box>
             ) : (
-              <Box sx={{ width:"10%", textAlign: "center", }}>
+              <Box sx={{ width: "20%", textAlign: "center" }}>
                 <FormControl fullWidth size="small">
                   <InputLabel
-                    sx={{ color: "white" }}
+                  className={styles.orderBy}
+                    sx={{ color: "white"}}
                     id="demo-simple-select-label"
                   >
                     Order by...
@@ -208,8 +225,8 @@ export function HomeAppBar() {
                   <Select
                     onChange={handleSelect}
                     sx={{ background: "#F297BF", color: "white", p: "0" }}
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
+                    labelId="selector"
+                    id="selector"
                     label="Order by..."
                     value={orderBy}
                   >
@@ -241,17 +258,17 @@ export function HomeAppBar() {
                 </FormControl>
               </Box>
             )}
-            {location.pathname === "/FrameAndCamera-ReduxApp/Home"  ? (
+            {location.pathname === "/FrameAndCamera-ReduxApp/Home" ? (
               <Box
                 sx={{
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  gap: "10px",
                 }}
               >
                 <Link to={"/FrameAndCamera-ReduxApp/favs"}>
                   <Button
+                    className={styles.favButton}
                     sx={{
                       color: "#BB37CD",
                       borderColor: "#BB37CD",
@@ -266,19 +283,34 @@ export function HomeAppBar() {
                     Favorites
                   </Button>
                 </Link>
+                <Link to={"/FrameAndCamera-ReduxApp/favs"}>
+                  <FavoriteIcon
+                    className={styles.favIcon}
+                    style={{ display: "none" }}
+                  />
+                </Link>
               </Box>
             ) : (
               <Box sx={{ textAlign: "center" }}>
                 <Link to={"/FrameAndCamera-ReduxApp/Home"}>
                   <Button
-                  sx={{
-                    color: "#FC7CBC",
-                    borderColor: "#FC7CBC",
-                    "&:hover": {
-                      borderColor: "#FC44A0",
-                    },
-                  }}
-                  startIcon={<HomeSharpIcon/>} variant="outlined">Home</Button>
+                  className={styles.homeButton}
+                    sx={{
+                      color: "#FC7CBC",
+                      borderColor: "#FC7CBC",
+                      "&:hover": {
+                        borderColor: "#FC44A0",
+                      },
+                    }}
+                    startIcon={<HomeSharpIcon />}
+                    variant="outlined"
+                  >
+                    Home
+                  </Button>
+                </Link>
+                <Link to={"/FrameAndCamera-ReduxApp/Home"}>
+                  <HomeSharpIcon className={styles.homeIcon}
+                    style={{ display: "none" }}/>
                 </Link>
               </Box>
             )}
