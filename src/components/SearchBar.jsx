@@ -57,8 +57,8 @@ export const SearchBar = () => {
   return (
     <>
       <CssTextField
-      fullWidth
       id="custom-css-outlined-input"
+      fullWidth
         onChange={location.pathname === "/FrameAndCamera-ReduxApp/Home" ? onSearchHandler : handleInputChange}
         sx={
           {
@@ -66,7 +66,7 @@ export const SearchBar = () => {
             background: "#747474"
           }
         }
-        label="Search whatever you wanna see..."
+        label="Type here for automatic search!"
         InputLabelProps={{
           style: { fontWeight: '300', color: 'rgba(255, 255, 255, 0.87)'  }
         }}
