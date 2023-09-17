@@ -40,8 +40,8 @@ export default function ModalEditDesc(props) {
   };
 
   return (
-    <div onClick={handleClickOpen}>
-      <IconButton
+    <div >
+      <IconButton onClick={handleClickOpen}
         style={{
           padding: 4,
           borderRadius: 4,
