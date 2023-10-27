@@ -5,7 +5,6 @@ import {Favs} from "./pages/Favs";
 import { getPhotos } from "./features/search/searchThunks";
 import { useDispatch } from "react-redux";
 import { addFromLocal } from "./features/favorite/favoriteSlice";
-import { Intro } from "./pages/Intro";
 
 export const Routing = () => {
   const rawFavs = JSON.parse(localStorage.getItem("favsLocal"));
