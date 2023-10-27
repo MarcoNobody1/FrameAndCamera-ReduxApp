@@ -28,7 +28,7 @@ export const Intro = () => {
         Welcome! Press start to enter to my HomePage
       </h1>
 
-      <Link to={"/FrameAndCamera-ReduxApp/Home"}>
+      <Link to={"/"}>
         <Button
           style={{
             color: "white",

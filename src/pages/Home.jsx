@@ -3,7 +3,7 @@ import { HomeAppBar } from "../components/HomeAppBar";
 
 import { MediaCard } from "../components/MediaCard";
 
-const Home = () => {
+export const Home = () => {
   return (
     <>
       <HomeAppBar />
@@ -11,5 +11,3 @@ const Home = () => {
     </>
   );
 };
-
-export default Home;

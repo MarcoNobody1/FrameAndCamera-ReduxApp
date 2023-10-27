@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "plus-build": "react-scripts build && aws s3 sync build/ s3://frameandcamera --profile MarcoNobody",
+    "plus-build": "npm run build && aws s3 sync build/ s3://frameandcameraphotoapp --profile MarcoNobody",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",

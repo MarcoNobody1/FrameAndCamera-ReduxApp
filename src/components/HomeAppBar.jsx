@@ -81,7 +81,7 @@ export function HomeAppBar() {
                 alignItems: "center",
               }}
             >
-              {location.pathname === "/FrameAndCamera-ReduxApp/Home" ? (
+              {location.pathname === "/" ? (
                 <SvgIcon
                   className={styles.mainIconLogo}
                   sx={{
@@ -181,7 +181,7 @@ export function HomeAppBar() {
               <SearchBar />
             </Box>
 
-            {location.pathname === "/FrameAndCamera-ReduxApp/Home" ? (
+            {location.pathname === "/" ? (
               <Box
                 sx={{
                   display: "flex",
@@ -258,7 +258,7 @@ export function HomeAppBar() {
                 </FormControl>
               </Box>
             )}
-            {location.pathname === "/FrameAndCamera-ReduxApp/Home" ? (
+            {location.pathname === "/" ? (
               <Box
                 sx={{
                   display: "flex",
@@ -266,7 +266,7 @@ export function HomeAppBar() {
                   alignItems: "center",
                 }}
               >
-                <Link to={"/FrameAndCamera-ReduxApp/favs"}>
+                <Link to={"favs"}>
                   <Button
                     className={styles.favButton}
                     sx={{
@@ -283,7 +283,7 @@ export function HomeAppBar() {
                     Favorites
                   </Button>
                 </Link>
-                <Link to={"/FrameAndCamera-ReduxApp/favs"}>
+                <Link to={"/favs"}>
                   <FavoriteIcon
                     className={styles.favIcon}
                     style={{ display: "none" }}
@@ -292,7 +292,7 @@ export function HomeAppBar() {
               </Box>
             ) : (
               <Box sx={{ textAlign: "center" }}>
-                <Link to={"/FrameAndCamera-ReduxApp/Home"}>
+                <Link to={"/"}>
                   <Button
                   className={styles.homeButton}
                     sx={{
@@ -308,7 +308,7 @@ export function HomeAppBar() {
                     Home
                   </Button>
                 </Link>
-                <Link to={"/FrameAndCamera-ReduxApp/Home"}>
+                <Link to={"/"}>
                   <HomeSharpIcon className={styles.homeIcon}
                     style={{ display: "none" }}/>
                 </Link>
