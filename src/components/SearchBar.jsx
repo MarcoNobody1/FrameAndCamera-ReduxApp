@@ -66,7 +66,7 @@ export const SearchBar = () => {
             background: "#747474"
           }
         }
-        label="Type here for automatic search!"
+        label={location.pathname === "/" ? "Type here for automatic search!" : "Search photo by description!" }
         InputLabelProps={{
           style: { fontWeight: '300', color: 'rgba(255, 255, 255, 0.87)'  }
         }}
