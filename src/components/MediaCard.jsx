@@ -126,7 +126,6 @@ export const MediaCard = () => {
             "." : "I don't know what is this picture...";
 
           return (
-            <>
               <div key={index} style={{ position: "relative" }}>
                 <Card
                   key={infoPhoto.id}
@@ -260,7 +259,6 @@ export const MediaCard = () => {
                   }}
                 ></div>
               </div>
-            </>
           );
         })
       ) : currentStatus === "rejected" ? (
