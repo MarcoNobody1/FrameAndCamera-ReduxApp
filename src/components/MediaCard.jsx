@@ -29,7 +29,13 @@ export const MediaCard = () => {
   const searchedPhotosInfo = useSelector(searchedPhotos);
   const dispatch = useDispatch();
   const [currenPhotos, setCurrentPhotos] = useState([]);
-
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "center",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: false,
+  });
   useEffect(() => {
     if (statusInfo === "rejected") {
       setCurrentStatus(statusInfo);
@@ -46,6 +52,10 @@ export const MediaCard = () => {
   const onAddFavoriteHandler = (infoPhoto) => {
     dispatch(removeCard(infoPhoto));
     dispatch(addFavorite(infoPhoto));
+    Toast.fire({
+      icon: "success",
+      title: "Photo added to your favourites",
+    });
     dispatch(get1Photo());
   };
 
@@ -116,149 +126,151 @@ export const MediaCard = () => {
                 Toast.fire({
                   icon: "error",
                   title: "Could not download image.",
+                  text: error,
                 });
               });
           };
 
-          const formatedDesc = infoPhoto.altDesc ?
-            infoPhoto.altDesc.charAt(0).toUpperCase() +
-            infoPhoto.altDesc.slice(1) +
-            "." : "I don't know what is this picture...";
+          const formatedDesc = infoPhoto.altDesc
+            ? infoPhoto.altDesc.charAt(0).toUpperCase() +
+              infoPhoto.altDesc.slice(1) +
+              "."
+            : "I don't know what is this picture...";
 
           return (
-              <div key={index} style={{ position: "relative" }}>
-                <Card
-                  key={infoPhoto.id}
-                  style={{
-                    backgroundColor: "transparent",
-                    zIndex: "1",
-                    position: "absolute",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                  sx={{
-                    p: "0",
-                    m: "0",
-                    mb: 1,
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    sx={{ height: 250 }}
-                    image={infoPhoto.url}
-                    title={infoPhoto.altDesc}
-                  />
+            <div key={index} style={{ position: "relative" }}>
+              <Card
+                key={infoPhoto.id}
+                style={{
+                  backgroundColor: "transparent",
+                  zIndex: "1",
+                  position: "absolute",
+                  width: "100%",
+                  height: "100%",
+                }}
+                sx={{
+                  p: "0",
+                  m: "0",
+                  mb: 1,
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  sx={{ height: 250 }}
+                  image={infoPhoto.url}
+                  title={infoPhoto.altDesc}
+                />
 
-                  <CardContent sx={{ pt: 1 }}>
-                    <div
-                      style={{
-                        position: "absolute",
-                        zIndex: 1,
-                      }}
-                    >
-                      <Typography
-                        style={{
-                          width: "100%",
-                          fontWeight: 700,
-                          fontSize: "0.85rem",
-                          color: "white",
-                          textShadow: "0px 4px 4px rgba(0, 0, 0, 0.50)",
-                        }}
-                        gutterBottom
-                        variant="body2"
-                      >
-                        {infoPhoto.city === null || infoPhoto.city === ""
-                          ? "Photo taken in an unknown place..."
-                          : `Photo taken ${infoPhoto.append} ${infoPhoto.city}, ${infoPhoto.country}`}
-                      </Typography>
-                      <Typography
-                        style={{
-                          color: "white",
-                          fontWeight: 500,
-                          paddingTop: "0.5rem",
-                          fontSize: "1rem",
-                          textShadow: "0px 4px 4px rgba(0, 0, 0, 0.50)",
-                        }}
-                        variant="body1"
-                      >
-                        {formatedDesc}
-                      </Typography>
-                    </div>
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "55.7%",
-                        left: 0,
-                        backgroundColor: "black",
-                        width: "100%",
-                        height: "100%",
-                        opacity: 0.45,
-                        zIndex: 0,
-                      }}
-                    ></div>
-                  </CardContent>
+                <CardContent sx={{ pt: 1 }}>
                   <div
                     style={{
-                      width: "100%",
                       position: "absolute",
-                      zIndex: 3,
-                      left: "0",
-                      bottom: "5%",
+                      zIndex: 1,
                     }}
                   >
-                    <CardActions
+                    <Typography
                       style={{
-                        display: "flex",
-                        justifyContent: "space-evenly",
-                        alignItems: "center",
+                        width: "100%",
+                        fontWeight: 700,
+                        fontSize: "0.85rem",
+                        color: "white",
+                        textShadow: "0px 4px 4px rgba(0, 0, 0, 0.50)",
                       }}
+                      gutterBottom
+                      variant="body2"
                     >
-                      <Button
-                        variant="contained"
-                        startIcon={<FavoriteTwoToneIcon />}
-                        onClick={() => onAddFavoriteHandler(infoPhoto)}
-                        size="large"
-                        style={{
-                          backgroundColor: "#BB37CD",
-                          color: "#ECEBF3",
-                          fontWeight: 400,
-                        }}
-                      >
-                        LIKE
-                      </Button>
-                      <Button
-                        variant="contained"
-                        endIcon={<DownloadSharpIcon />}
-                        size="large"
-                        onClick={handleDownload}
-                        style={{
-                          backgroundColor: "#5197E4",
-                          color: "#ECEBF3",
-                          fontWeight: 400,
-                        }}
-                      >
-                        DOWNLOAD
-                      </Button>
-                    </CardActions>
+                      {infoPhoto.city === null || infoPhoto.city === ""
+                        ? "Photo taken in an unknown place..."
+                        : `Photo taken ${infoPhoto.append} ${infoPhoto.city}, ${infoPhoto.country}`}
+                    </Typography>
+                    <Typography
+                      style={{
+                        color: "white",
+                        fontWeight: 500,
+                        paddingTop: "0.5rem",
+                        fontSize: "1rem",
+                        textShadow: "0px 4px 4px rgba(0, 0, 0, 0.50)",
+                      }}
+                      variant="body1"
+                    >
+                      {formatedDesc}
+                    </Typography>
                   </div>
-                </Card>
-
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "55.7%",
+                      left: 0,
+                      backgroundColor: "black",
+                      width: "100%",
+                      height: "100%",
+                      opacity: 0.45,
+                      zIndex: 0,
+                    }}
+                  ></div>
+                </CardContent>
                 <div
                   style={{
-                    position: "absolute",
-                    top: "0",
-                    backgroundImage: `url(${infoPhoto.url})`,
-                    backgroundPosition: "0% 0%",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
                     width: "100%",
-                    height: "100%",
-                    filter: "blur(3px)",
-                    opacity: "0.8",
-                    zIndex: 0,
+                    position: "absolute",
+                    zIndex: 3,
+                    left: "0",
+                    bottom: "5%",
                   }}
-                ></div>
-              </div>
+                >
+                  <CardActions
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-evenly",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Button
+                      variant="contained"
+                      startIcon={<FavoriteTwoToneIcon />}
+                      onClick={() => onAddFavoriteHandler(infoPhoto)}
+                      size="large"
+                      style={{
+                        backgroundColor: "#BB37CD",
+                        color: "#ECEBF3",
+                        fontWeight: 400,
+                      }}
+                    >
+                      LIKE
+                    </Button>
+                    <Button
+                      variant="contained"
+                      endIcon={<DownloadSharpIcon />}
+                      size="large"
+                      onClick={handleDownload}
+                      style={{
+                        backgroundColor: "#5197E4",
+                        color: "#ECEBF3",
+                        fontWeight: 400,
+                      }}
+                    >
+                      DOWNLOAD
+                    </Button>
+                  </CardActions>
+                </div>
+              </Card>
+
+              <div
+                style={{
+                  position: "absolute",
+                  top: "0",
+                  backgroundImage: `url(${infoPhoto.url})`,
+                  backgroundPosition: "0% 0%",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  width: "100%",
+                  height: "100%",
+                  filter: "blur(3px)",
+                  opacity: "0.8",
+                  zIndex: 0,
+                }}
+              ></div>
+            </div>
           );
         })
       ) : currentStatus === "rejected" ? (
