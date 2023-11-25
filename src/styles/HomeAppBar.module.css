@@ -41,7 +41,7 @@
 
   @media (min-width: 1536px){
     .appBar{
-      max-width: none;
+      max-width: none !important;
     }
       
   }
