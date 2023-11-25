@@ -28,9 +28,20 @@ import logo from "../assets/logos/logo-favs.png";
 export const Favorites = () => {
   const favorites = useSelector(favoritePhotos);
   const dispatch = useDispatch();
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "center",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: false,
+  });
 
   const onRemoveFavoriteHandler = (favorite) => {
     dispatch(removeFavorite(favorite));
+    Toast.fire({
+      icon: "success",
+      title: "Photo removed from your favourites",
+    });
   };
 
   const body = {
