@@ -56,7 +56,7 @@ export const Favorites = () => {
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundColor: "#161616",
-    minHeight: "85.50vw",
+    minHeight: "100vh",
     height: "auto",
   };
   if (favorites.length === 0) {
@@ -69,7 +69,7 @@ export const Favorites = () => {
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
           backgroundAttachment: "fixed",
-          minHeight: "85.5vw",
+          minHeight: "100vh",
           height: "auto",
           alignItems: "center",
           color: "white",
@@ -97,7 +97,7 @@ export const Favorites = () => {
   } else {
     return (
       <div style={body}>
-        {favorites.map((favorite) => {
+        {favorites.map((favorite, index) => {
           const handleDownload = () => {
             let timerInterval;
             const url = `${favorite.url}`;
@@ -163,10 +163,9 @@ export const Favorites = () => {
           };
 
           return (
-            <>
-              <div style={{ position: "relative", border: '4px solid rgba(0, 0, 0, 0.3)' }}>
+              <div key={index} style={{ position: "relative", border: '4px solid rgba(0, 0, 0, 0.3)' }}>
                 <Card
-                  key={favorite.id}
+                  key={index}
                   style={{
                     backgroundColor: "transparent",
                     zIndex: "2",
@@ -317,14 +316,11 @@ export const Favorites = () => {
                       >
                         DOWNLOAD
                       </Button>
-                      <Button
-                      variant="contained"
-                       sx={{p:0, minWidth:'0'}}>
                         <ModalEditDesc
                           identity={favorite.id}
                           texto={favorite.altDesc}
                         />
-                      </Button>
+
                     </CardActions>
                   </div>
                 </Card>
@@ -363,7 +359,6 @@ export const Favorites = () => {
                   }}
                 ></div>
               </div>
-            </>
           );
         })}
       </div>
