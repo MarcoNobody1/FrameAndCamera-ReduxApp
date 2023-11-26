@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { get1Photo, getPhotos, search1Photo, searchPhotos } from "./searchThunks";
+import {
+  get1Photo,
+  getPhotos,
+  search1Photo,
+  searchPhotos,
+} from "./searchThunks";
 
 const initialState = {
   error: "null",
@@ -13,12 +18,18 @@ export const searchSlice = createSlice({
   initialState,
   reducers: {
     removeCard: (state, action) => {
-      
-      state.initialFetch = state.initialFetch.filter((photo) => photo.id !== action.payload.id);
+      state.initialFetch = state.initialFetch.filter(
+        (photo) => photo.id !== action.payload.id
+      );
+    },
+    removeSearchedCard: (state, action) => {
+      state.searchedPhotos = state.searchedPhotos.filter(
+        (photo) => photo.id !== action.payload.id
+      );
     },
     clearPhotos: (state, action) => {
       state.searchedPhotos = [];
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -57,7 +68,7 @@ export const searchSlice = createSlice({
       })
       .addCase(search1Photo.fulfilled, (state, action) => {
         state.searchStatus = "fulfilled";
-        state.initialFetch = [...state.searchedPhotos, action.payload];
+        state.searchedPhotos = [...state.searchedPhotos, action.payload];
       })
       .addCase(search1Photo.pending, (state, action) => {
         state.searchStatus = "pending";
@@ -65,7 +76,7 @@ export const searchSlice = createSlice({
       .addCase(search1Photo.rejected, (state, action) => {
         state.searchStatus = "rejected";
         state.error = action.error.message;
-      })
+      });
   },
 });
 
@@ -74,4 +85,5 @@ export const statusinfo = (state) => state.search.status;
 export const searchedPhotos = (state) => state.search.searchedPhotos;
 export const get1 = get1Photo.fulfilled;
 
-export const {removeCard, clearPhotos} = searchSlice.actions;
+export const { removeCard, clearPhotos, removeSearchedCard } =
+  searchSlice.actions;
