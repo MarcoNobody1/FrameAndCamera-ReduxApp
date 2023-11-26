@@ -13,16 +13,17 @@ import {
   removeCard,
   statusinfo,
   searchedPhotos,
+  removeSearchedCard,
 } from "../features/search/searchSlice";
 import { useEffect, useState } from "react";
 import { saveAs } from "file-saver";
 import Swal from "sweetalert2";
 import { CircularProgress } from "@mui/material";
 import { addFavorite } from "../features/favorite/favoriteSlice";
-import { get1Photo } from "../features/search/searchThunks";
+import { get1Photo, search1Photo } from "../features/search/searchThunks";
 import logo from "../assets/logos/logo-main.png";
 
-export const MediaCard = () => {
+export const MediaCard = ({search}) => {
   const [currentStatus, setCurrentStatus] = useState("");
   const infoPhotos = useSelector(info);
   const statusInfo = useSelector(statusinfo);
@@ -50,13 +51,20 @@ export const MediaCard = () => {
   }, [statusInfo, infoPhotos, searchedPhotosInfo]);
 
   const onAddFavoriteHandler = (infoPhoto) => {
-    dispatch(removeCard(infoPhoto));
+
+    if ( searchedPhotosInfo.length !== 0){
+      dispatch(removeSearchedCard(infoPhoto));
+      dispatch(search1Photo(search));
+    } else {
+      dispatch(removeCard(infoPhoto));
+      dispatch(get1Photo());
+    }
+
     dispatch(addFavorite(infoPhoto));
     Toast.fire({
       icon: "success",
       title: "Photo added to your favourites",
     });
-    dispatch(get1Photo());
   };
 
   const body = {
