@@ -8,7 +8,7 @@ import { SearchBar } from "./SearchBar";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HomeSharpIcon from "@mui/icons-material/HomeSharp";
-import styles from "../styles/HomeAppBar.module.css"
+import styles from "../styles/HomeAppBar.module.css";
 import {
   Button,
   FormControl,
@@ -21,8 +21,9 @@ import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getPhotos } from "../features/search/searchThunks";
 import { orderFavorites } from "../features/favorite/favoriteSlice";
+import { clearPhotos } from "../features/search/searchSlice";
 
-export function HomeAppBar() {
+export function HomeAppBar({ setSearch }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const [orderBy, setOrderBy] = useState("");
@@ -48,7 +49,7 @@ export function HomeAppBar() {
         position="sticky"
       >
         <Container
-        className={styles.appBar}
+          className={styles.appBar}
           style={{
             marginRight: 0,
             marginLeft: 0,
@@ -178,7 +179,7 @@ export function HomeAppBar() {
                 alignItems: "center",
               }}
             >
-              <SearchBar />
+              <SearchBar setSearch={setSearch} />
             </Box>
 
             {location.pathname === "/" ? (
@@ -216,19 +217,22 @@ export function HomeAppBar() {
               <Box sx={{ width: "20%", textAlign: "center" }}>
                 <FormControl fullWidth size="small">
                   <InputLabel
-                  className={styles.orderBy}
-                    sx={{ color: "white"}}
-                    id="demo-simple-select-label"
+                    id={"demo-simple-select-label"}
+                    htmlFor={"filter-select-input-id"}
+                    className={styles.orderBy}
+                    sx={{ color: "white" }}
                   >
-                    Order by...
+                    Order by
                   </InputLabel>
                   <Select
                     onChange={handleSelect}
                     sx={{ background: "#F297BF", color: "white", p: "0" }}
-                    labelId="selector"
-                    id="selector"
-                    label="Order by..."
+                    labelId={"demo-simple-select-label"}
+                    name="selector"
+                    id={"filter-select"}
+                    inputProps={{ id: "filter-select-input-id" }}
                     value={orderBy}
+                    label={"Order by"}
                   >
                     <MenuItem
                       sx={{ color: "white", background: "#F297BF" }}
@@ -294,7 +298,7 @@ export function HomeAppBar() {
               <Box sx={{ textAlign: "center" }}>
                 <Link to={"/"}>
                   <Button
-                  className={styles.homeButton}
+                    className={styles.homeButton}
                     sx={{
                       color: "#FC7CBC",
                       borderColor: "#FC7CBC",
@@ -304,13 +308,16 @@ export function HomeAppBar() {
                     }}
                     startIcon={<HomeSharpIcon />}
                     variant="outlined"
+                    onClick={() => dispatch(clearPhotos())}
                   >
                     Home
                   </Button>
                 </Link>
                 <Link to={"/"}>
-                  <HomeSharpIcon className={styles.homeIcon}
-                    style={{ display: "none" }}/>
+                  <HomeSharpIcon
+                    className={styles.homeIcon}
+                    style={{ display: "none" }}
+                  />
                 </Link>
               </Box>
             )}
