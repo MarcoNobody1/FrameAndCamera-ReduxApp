@@ -59,6 +59,7 @@ export default function ModalEditDesc(props) {
         <DialogContent>
           <DialogContentText>Text before: {props.texto}</DialogContentText>
           <TextField
+          autoComplete="false"
             onChange={handleTextfieldValueChange}
             onKeyDown={(event) => {
               if (event.key === "Enter") {
