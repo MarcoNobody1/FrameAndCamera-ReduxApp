@@ -25,7 +25,7 @@ const fetchDataWithRetry = async (url) => {
     try {
       request = await fetch(`${baseUrl}${url}&client_id=${key}`);
       if (request.status === 200) {
-        break; // Si es exitoso, salir del bucle
+        break;
       }
     } catch (error) {
       console.error("Error al obtener datos:", error);
