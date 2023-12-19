@@ -22,7 +22,7 @@ jobs:
           args: --acl public-read --follow-symlinks --delete
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-          AWS_ACCESS: ${{ secrets.AWS_ACCESS }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS }}
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
           AWS_REGION: "eu-west-1"
           SOURCE_DIR: "build"
