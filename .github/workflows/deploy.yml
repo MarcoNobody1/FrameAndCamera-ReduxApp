@@ -16,8 +16,27 @@ jobs:
         run: npm run build
         env:
           REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+          REACT_APP_API_KEY2: ${{ secrets.REACT_APP_API_KEY2 }}
+          REACT_APP_API_KEY3: ${{ secrets.REACT_APP_API_KEY3 }}
+          REACT_APP_API_KEY4: ${{ secrets.REACT_APP_API_KEY4 }}
+          REACT_APP_API_KEY5: ${{ secrets.REACT_APP_API_KEY5 }}
+          REACT_APP_API_KEY6: ${{ secrets.REACT_APP_API_KEY6 }}
+          REACT_APP_API_KEY7: ${{ secrets.REACT_APP_API_KEY7 }}
+          REACT_APP_API_KEY8: ${{ secrets.REACT_APP_API_KEY8 }}
+          REACT_APP_API_KEY9: ${{ secrets.REACT_APP_API_KEY9 }}
+          REACT_APP_API_KEY10: ${{ secrets.REACT_APP_API_KEY10 }}
       - name: Creating .env
-        run: echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" > .env.local
+        run: |
+            echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" > .env.local
+            echo "REACT_APP_API_KEY2=${{ secrets.REACT_APP_API_KEY2 }}" >> .env.local
+            echo "REACT_APP_API_KEY3=${{ secrets.REACT_APP_API_KEY3 }}" >> .env.local
+            echo "REACT_APP_API_KEY4=${{ secrets.REACT_APP_API_KEY4 }}" >> .env.local
+            echo "REACT_APP_API_KEY5=${{ secrets.REACT_APP_API_KEY5 }}" >> .env.local
+            echo "REACT_APP_API_KEY6=${{ secrets.REACT_APP_API_KEY6 }}" >> .env.local
+            echo "REACT_APP_API_KEY7=${{ secrets.REACT_APP_API_KEY7 }}" >> .env.local
+            echo "REACT_APP_API_KEY8=${{ secrets.REACT_APP_API_KEY8 }}" >> .env.local
+            echo "REACT_APP_API_KEY9=${{ secrets.REACT_APP_API_KEY9 }}" >> .env.local
+            echo "REACT_APP_API_KEY10=${{ secrets.REACT_APP_API_KEY10 }}" >> .env.local
       - name: Upload to AWS
         uses: jakejarvis/s3-sync-action@master
         with:
